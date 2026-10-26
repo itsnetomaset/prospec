@@ -35,6 +35,29 @@ A team panel that turns a search like *"veterinary clinic in Ribeirão Preto"* i
 
 > **Note:** the interface and the outreach messages are in Portuguese, as the tool prospects Brazilian businesses. Code, comments and documentation are in English. Database table and column names were kept in Portuguese for compatibility with the production database.
 
+## 📸 Screenshots
+
+> All businesses, phone numbers and websites below are fictional demo data.
+
+**Lead list:** each card shows why the business is a prospect, its score, the last contact and note, and the WhatsApp actions.
+
+<p align="center"><img src="docs/screenshots/leads.png" alt="Lead list with filters and lead cards" width="90%"></p>
+
+**Outreach queue:** one lead at a time with the message ready. Opening WhatsApp marks the lead as contacted and loads the next one.
+
+<p align="center">
+  <img src="docs/screenshots/queue.png" alt="Outreach queue on desktop" width="64%">
+  <img src="docs/screenshots/queue-mobile.png" alt="Outreach queue on mobile" width="24%">
+</p>
+
+**Website audit:** findings ranked by severity, each with what was found and why it matters to the owner, plus a ready-to-send summary.
+
+<p align="center"><img src="docs/screenshots/audit.png" alt="Website audit report" width="90%"></p>
+
+**Funnel dashboard:** leads by status, reply rate by niche and profile, and workload per salesperson.
+
+<p align="center"><img src="docs/screenshots/dashboard.png" alt="Funnel dashboard" width="90%"></p>
+
 ## 🏗️ Architecture
 
 Plain PHP with no framework, organized in layers. Every dependency is passed through constructors, so each part can be tested in isolation.
