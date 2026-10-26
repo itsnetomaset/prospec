@@ -1,4 +1,4 @@
--- Prospec: estrutura do banco (MySQL/MariaDB). Importe no phpMyAdmin.
+-- Prospec database schema (MySQL/MariaDB). Import with phpMyAdmin or the mysql CLI.
 SET NAMES utf8mb4;
 
 CREATE TABLE IF NOT EXISTS leads (

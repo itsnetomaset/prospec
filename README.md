@@ -1,35 +1,69 @@
-# Prospec
+<div align="center">
 
-Painel de prospecção de clientes da **NEMAX Digital**. Encontra empresas locais pelo Google (via [Serper](https://serper.dev)), filtra as que não têm site, só têm rede social ou têm site fraco, e organiza a abordagem por WhatsApp em equipe.
+# 🎯 Prospec
 
-## Funcionalidades
+### Lead prospecting panel for a web design agency
 
-- **Busca por nicho e cidade**, com autocomplete dos municípios do IBGE
-- **Filtro automático**: descarta empresas com poucas avaliações e classifica o perfil (sem site, só rede social, site fraco)
-- **Análise de site**: verifica problemas como falta de adaptação ao celular e gera argumentos de venda
-- **Funil de leads** com status (novo, contatado, respondeu, reunião, fechado, perdido) e histórico de ações
-- **Fila de abordagem** com mensagem de WhatsApp pronta e personalizada
-- **Multiusuário**: cada lead tem um dono; limite diário de buscas por usuário
-- **Painel** com taxa de resposta por nicho e perfil; exportação CSV para admins
-- **Segurança**: senhas com hash, troca obrigatória no primeiro acesso, CSRF, CSP com nonce, limite de tentativas de login
+![PHP](https://img.shields.io/badge/PHP_8-777BB4?style=flat-square&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![No Framework](https://img.shields.io/badge/framework-none-blue?style=flat-square)
+![Status](https://img.shields.io/badge/status-in_use-success?style=flat-square)
 
-## Stack
-
-PHP 8+ (sem framework), MySQL/MariaDB, HTML/CSS/JS puro.
-
-## Instalação
-
-1. Suba os arquivos para a pasta do domínio (ex.: `public_html/`).
-2. Crie um banco MySQL e importe `schema.sql` no phpMyAdmin.
-3. Copie `config.example.php` para `config.php` e preencha banco, chave do Serper e usuários.
-4. Gere o hash da senha inicial de cada usuário:
-   ```bash
-   php -r "echo password_hash('SUA_SENHA_INICIAL', PASSWORD_DEFAULT), PHP_EOL;"
-   ```
-5. Acesse o domínio e faça login. O sistema pede a troca da senha no primeiro acesso.
-
-O `.htaccess` bloqueia o acesso direto a `config.php`, `lib.php` e arquivos `.json`/`.sql`.
+</div>
 
 ---
 
-Desenvolvido por [Giuseppe Maset Neto](https://www.linkedin.com/in/giuseppemasetneto) · [NEMAX Digital](https://nemaxdigital.com.br)
+## 🎯 The Problem
+
+Selling websites to small local businesses starts with finding the right ones: companies that are active and well reviewed, but have no website, only a social media profile, or a site that is broken on mobile. Doing this by hand means searching Google Maps city by city, checking each site, keeping a spreadsheet and making sure two salespeople never contact the same business.
+
+## ✅ The Solution
+
+A team panel that turns a search like *"veterinary clinic in Ribeirão Preto"* into a scored, deduplicated lead list and a ready-to-send WhatsApp queue.
+
+| Feature | Description |
+|---|---|
+| 🔎 **Search by niche and city** | Google Maps results via the Serper API, with autocomplete for all ~5,570 Brazilian municipalities (IBGE official list) |
+| 🧮 **Automatic qualification** | Drops businesses with too few reviews and classifies the rest as *no website*, *social media only* or *weak website* |
+| 🩺 **Website audit** | Checks a prospect's site for issues such as missing mobile viewport and turns each finding into a sales argument |
+| 📊 **Lead funnel** | Status pipeline (new, contacted, replied, meeting, closed, lost) with a full action history per lead |
+| 💬 **Outreach queue** | Personalized WhatsApp message per lead, opened with one click |
+| 👥 **Multi-user** | Each lead has a single owner (atomic claim), with a daily search quota per user to control API cost |
+| 📈 **Dashboard** | Reply and meeting rates by niche and lead profile; CSV export for admins |
+
+> **Note:** the interface is in Portuguese, as the tool is used to prospect Brazilian businesses.
+
+## 🔒 Security
+
+- Passwords stored as bcrypt hashes, with a forced password change on first login
+- CSRF tokens on every form, strict Content Security Policy with per-request nonce
+- Login throttling by IP and username, timing-safe comparison for unknown users
+- Prepared statements for all queries; `.htaccess` blocks direct access to config, library and data files
+
+## 🛠️ Tech Stack
+
+PHP 8 (no framework), MySQL/MariaDB, vanilla HTML, CSS and JavaScript. External APIs: [Serper](https://serper.dev) (Google Maps search) and IBGE (municipality list).
+
+## 🚀 Setup
+
+1. Upload the files to the web root (e.g. `public_html/`).
+2. Create a MySQL database and import `schema.sql`.
+3. Copy `config.example.php` to `config.php` and fill in the database credentials, the Serper API key and the users.
+4. Generate each user's initial password hash:
+   ```bash
+   php -r "echo password_hash('INITIAL_PASSWORD', PASSWORD_DEFAULT), PHP_EOL;"
+   ```
+5. Open the site and log in. The system asks for a new password on first access.
+
+## 💡 What I Learned
+
+The hard part was not the search but the team workflow: two people must never message the same business, quotas must hold under concurrent requests, and a slow website audit must not break the database connection on shared hosting. Each of those became a small, explicit design decision (atomic lead claim, upsert counters, reconnect after long checks) instead of an assumption.
+
+---
+
+<div align="center">
+
+Built by [Giuseppe Maset Neto](https://www.linkedin.com/in/giuseppemasetneto) for [NEMAX Digital](https://nemaxdigital.com.br)
+
+</div>

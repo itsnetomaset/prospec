@@ -1,19 +1,19 @@
 <?php
-// Copie este arquivo para config.php e preencha os dados. O config.php não vai para o Git (.gitignore).
-// O .htaccess bloqueia o acesso direto ao config.php pelo navegador.
+// Copy this file to config.php and fill in your values. config.php is git-ignored.
+// The .htaccess file blocks direct browser access to config.php.
 return [
-    // Banco MySQL (hPanel > Bancos de dados MySQL) e chave do Serper (serper.dev > API Key).
-    'db' => ['host' => 'localhost', 'name' => 'COLE_AQUI_NOME_DO_BANCO', 'user' => 'COLE_AQUI_USUARIO', 'pass' => 'COLE_AQUI_SENHA'],
-    'serper_key' => 'COLE_AQUI_CHAVE_SERPER',
-    'agencia' => 'NEMAX Digital',  // nome da agência usado na mensagem para o cliente
-    'min_avaliacoes' => 9,         // abaixo disso a empresa é descartada
-    'limite_buscas_dia' => 30,     // buscas no Serper por usuário por dia (cada busca gasta crédito)
-    'por_pagina' => 50,            // leads por página na lista
-    // Usuários. 'hash' é a senha inicial, gerada com:
-    //   php -r "echo password_hash('SUA_SENHA_INICIAL', PASSWORD_DEFAULT), PHP_EOL;"
-    // No primeiro acesso o sistema obriga a trocar; a nova senha fica no banco (tabela senhas).
-    // 'nome' é como a pessoa se apresenta na mensagem. 'admin' pode devolver/alterar qualquer lead e exportar CSV.
+    // MySQL database and Serper API key (serper.dev > API Key).
+    'db' => ['host' => 'localhost', 'name' => 'COLE_AQUI_DB_NAME', 'user' => 'COLE_AQUI_DB_USER', 'pass' => 'COLE_AQUI_DB_PASSWORD'],
+    'serper_key' => 'COLE_AQUI_SERPER_KEY',
+    'agencia' => 'NEMAX Digital',  // agency name used in the outreach message
+    'min_avaliacoes' => 9,         // businesses with fewer reviews are discarded
+    'limite_buscas_dia' => 30,     // Serper searches per user per day (each search costs credits)
+    'por_pagina' => 50,            // leads per page in the list
+    // Users. 'hash' is the initial password, generated with:
+    //   php -r "echo password_hash('INITIAL_PASSWORD', PASSWORD_DEFAULT), PHP_EOL;"
+    // On first login the user must set a new password, which is stored in the database (table senhas).
+    // 'nome' is how the user signs the outreach message. 'admin' can reassign any lead and export CSV.
     'users' => [
-        'admin' => ['nome' => 'Seu Nome', 'admin' => true, 'hash' => 'COLE_AQUI_HASH'],
+        'admin' => ['nome' => 'Your Name', 'admin' => true, 'hash' => 'COLE_AQUI_HASH'],
     ],
 ];
