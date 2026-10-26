@@ -171,7 +171,7 @@ final class LeadController
             $this->session->flash('error', 'Número inválido. Use DDD + 9 + número, por exemplo (17) 99104-8833.');
             return;
         }
-        $formatted = '+55 ' . substr($number, 0, 2) . ' ' . substr($number, 2, 5) . '-' . substr($number, 7);
+        $formatted = PhoneNumber::format($number);
         $this->leads->updatePhone($id, $formatted);
         $this->log->record($id, $this->user, ActivityLog::PHONE, $formatted);
         $this->session->flash('info', 'WhatsApp salvo. A mensagem já está pronta no card.');

@@ -103,6 +103,16 @@ final class AppTest extends DatabaseTestCase
         self::assertSame('devolvido por admin (era de ana)', $this->scalar('SELECT detalhe FROM lead_log'));
     }
 
+    public function testManualWhatsAppNumberIsFormatted(): void
+    {
+        $this->logIn('giu');
+        $id = $this->insertLead(['dono' => 'giu', 'telefone' => '']);
+
+        $this->post('giu', ['a' => 'whatsapp', 'id' => (string)$id, 'zap' => '(16) 3610-1234']);
+
+        self::assertSame('+55 16 3610-1234', $this->scalar('SELECT telefone FROM leads'));
+    }
+
     public function testCsvExportIsForAdminsOnly(): void
     {
         $this->logIn('giu');
