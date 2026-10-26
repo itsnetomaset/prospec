@@ -1,0 +1,11 @@
+# Bloqueia leitura direta dos arquivos internos do Prospec
+<FilesMatch "^(config|lib)\.php$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(sql|log|bak|json)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>

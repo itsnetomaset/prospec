@@ -1,0 +1,5 @@
+config.php
+cidades_ibge.falhou
+*.log
+*.bak
+.DS_Store
