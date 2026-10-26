@@ -3,3 +3,5 @@ cidades_ibge.falhou
 *.log
 *.bak
 .DS_Store
+/vendor/
+/.phpunit.cache/

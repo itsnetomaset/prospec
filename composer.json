@@ -1,0 +1,33 @@
+{
+    "name": "itsnetomaset/prospec",
+    "description": "Lead prospecting panel for a web design agency: finds local businesses with no website or a weak one and runs WhatsApp outreach as a team funnel.",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {"name": "Giuseppe Maset Neto", "homepage": "https://www.linkedin.com/in/giuseppemasetneto"}
+    ],
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {"Prospec\\": "src/"},
+        "files": ["src/Support/helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {"Prospec\\Tests\\": "tests/"}
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
