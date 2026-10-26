@@ -1,0 +1,5 @@
+# Prospec web root. Only this folder should be exposed by the web server.
+Options -Indexes
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>

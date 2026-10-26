@@ -1,7 +1,6 @@
-config.php
-cidades_ibge.falhou
-*.log
-*.bak
-.DS_Store
+/config.php
 /vendor/
+/data/*.failed
 /.phpunit.cache/
+*.log
+.DS_Store
